@@ -27,7 +27,7 @@ bool Lex::PolishNotation( LT::LexTable& lextable, IT::IdTable& idtable)
 			Stack* stack = new Stack;
 			stack->head = NULL;
 			Queue* begin = NULL, * end;
-			while (lextable.table[lexindx - 1].lexema != LEX_SEMICOLON )//////////////////////////////////////////////
+			while (lextable.table[lexindx - 1].lexema != LEX_SEMICOLON )
 			{
 				if (lextable.table[lexindx - 1].lexema == LEX_ID)
 				{

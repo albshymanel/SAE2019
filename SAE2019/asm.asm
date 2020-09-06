@@ -20,7 +20,7 @@ EXTRN NULLEXCEPTION: PROC
 	L3 sdword 27
 	L4 byte 1
 	L5 sdword 4
-	L6 byte 'Mainc',0
+	L6 byte 'Mainstr',0
 	L7 sdword 2
 	L8 sdword 0
 	L9 sdword 65

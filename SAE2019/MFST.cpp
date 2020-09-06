@@ -1,6 +1,13 @@
 
 #include "stdafx.h"
-
+//тк _Get_Container работает не на всех стандартах ,написал адаптер
+template<typename Adapter>
+typename Adapter::container_type const& getContainer(const Adapter& adapter) {
+	struct AccessProtected : private Adapter {
+		static typename Adapter::container_type const& getContainer(const Adapter& adapter) { return adapter.* & AccessProtected::c; }
+	};
+	return AccessProtected::getContainer(adapter);
+}
 
 MFST::MFSTState::MFSTState()
 {
@@ -216,7 +223,8 @@ char* MFST::MFST::getCSt(char* buf)
 	short p;
 	for (int i = (signed)stack_mfst.size() - 1; i >= 0; --i)
 	{
-		p = stack_mfst._Get_container()[i];
+		p = getContainer(stack_mfst)[i];
+		//p = stack_mfst._Get_container()[i];
 		buf[stack_mfst.size() - 1 - i] = GRB::Rule::Chain::alphabet_to_char(p);//переписываем стек
 	}
 
@@ -258,7 +266,8 @@ void MFST::MFST::printRules()
 	GRB::Rule rule;
 	for (unsigned short i = 0; i < storestate.size(); i++)
 	{
-		state = storestate._Get_container()[i];
+		state = getContainer(storestate)[i];
+		//state = storestate._Get_container()[i];
 		rule = grebach.getRule(state.nrule);
 		MFST_TRACE7
 	}
@@ -273,7 +282,8 @@ bool MFST::MFST::saveoutputTree()
 
 	for (unsigned short i = 0; i < storestate.size(); i++)
 	{
-		state = storestate._Get_container()[i];
+		state = getContainer(storestate)[i];
+		//state = storestate._Get_container()[i];
 		output.nrules[i] = state.nrule;
 		output.nrulechain[i] = state.nrulechain;
 	}

@@ -70,7 +70,7 @@ void CodeGeneration::CodeGeneration(Lex::LEX lex, Log::LOG log)
 				if(lex.lextable.table[i + 1].lexema == LEX_FUNCTION)//вывод сигнатур
 				{
 					string funcName = string((char*)lex.idtable.table[lex.lextable.table[i + 2].idxTI].id);
-					asmFile << funcName << " PROC ";//?запятая
+					asmFile << funcName << " PROC ";
 					for (i += 3; lex.lextable.table[i].lexema != LEX_LEFTBRACE; i++)
 					{
 						if (lex.lextable.table[i].lexema == LEX_ID)
@@ -442,7 +442,7 @@ void CodeGeneration::CalculateExpression(int& i, Lex::LEX lex, std::ofstream& as
 		if (sign != NULL)
 		{
 			int lineIfOperator = lextable.table[i].sn;
-			if (sign == EQUALSYING)//EAX == EBX?
+			if (sign == EQUALSYING)
 			{
 				asmFile << ASM_TAB << "pop EBX" << endl;
 				asmFile << ASM_TAB << "pop EAX" << endl;

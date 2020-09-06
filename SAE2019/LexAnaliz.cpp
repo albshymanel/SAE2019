@@ -101,7 +101,7 @@ namespace Lex
 				entryIT2.funparm.parmtypes[1] = IT::IDDATATYPE::BYTE;
 				IT::Add(idtable, entryIT2);
 				indexID = 2;
-				IT::Entry entryIT;		// экземпл€р строки таблицы идентификаторов костыль
+				IT::Entry entryIT;		// экземпл€р строки таблицы идентификаторов 
 		for (int i = 0; word[i] != NULL; i++, indxLex++)
 		{
 			bool findSameID = false;		// флажок одинаковых литералов
